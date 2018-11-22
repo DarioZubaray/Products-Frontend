@@ -6,10 +6,10 @@ const app = express();
 const port = process.env.PORT || 3000;
 const backendUrl = {
   'host': 'http://localhost:8080',
+  'heroku': 'https://dariozubaray-products-backend.herokuapp.com',
   'findAll': '/api/product/findAll',
   'create': '/api/product/create'
 };
-//backendUrl.host + backendUrl.findAll
 
 app.use( express.static( __dirname + '/public'));
 hbs.registerHelper('getFullYear', () => {
@@ -25,10 +25,12 @@ app.get('/', (req, res) => {
         console.log(error);
         res.render('error', { 'error': error });
     } else {
-      console.log(JSON.parse(body));
+      let products = JSON.parse(body);
+      products.number = products.number + 1;
+      console.log(products);
       res.render('home', {
         'hactive': 'active',
-        'products': JSON.parse(body)
+        'products': products
       });
     }
   });

@@ -13,7 +13,7 @@
           </tr>
       </thead>
       <tbody>
-          {{#each products}}
+          {{#each products.content}}
               <tr>
                   <td>{{this.name}}</td>
                   <td>{{this.price}}</td>
@@ -26,5 +26,6 @@
     </div>
   </div>
 </div>
+{{> pagination }}
 
 {{> footer }}
