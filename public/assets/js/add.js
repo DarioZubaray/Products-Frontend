@@ -10,7 +10,7 @@ $("#agregarProducto").submit(()=>{
   	"brand": $("#brand").val(),
   	"categoryId": $("#categoryId").val()
   };
-      
+
   $.ajax({
     url: url,
     type: 'post',
@@ -23,8 +23,16 @@ $("#agregarProducto").submit(()=>{
     dataType: 'json',
     success: function (data) {
         console.info(data);
+        if(data && data.valid){
+          $('#modal-content').html(`Se ha agregado correctamente con el identificador ${data.id}`);
+        } else {
+          $('#modal-content').html('Lo sentimos ha ocurrido un error');
+        }
+        $('#modal-result').modal('show');
       }
-    });
+    }).fail(function() {
+      alert( "error" );
+  });
 
   $("#agregarProducto").trigger("reset");
 });
