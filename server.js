@@ -4,7 +4,7 @@ const Request = require("request");
 
 const app = express();
 
-const port = process.env.PORT || 3002;
+const port = process.env.PORT || 3000;
 const backendUrl = {
   'host': 'http://localhost:8080',
   'heroku': 'https://dariozubaray-products-backend.herokuapp.com',
@@ -15,6 +15,9 @@ const backendUrl = {
 app.use( express.static( __dirname + '/public'));
 hbs.registerHelper('getFullYear', () => {
   return new Date().getFullYear();
+});
+hbs.registerHelper('json',function(obj) {
+   return new hbs.SafeString(JSON.stringify(obj))
 });
 hbs.registerPartials(__dirname + '/views/partials');
 

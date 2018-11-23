@@ -3,29 +3,35 @@
   <h1><i class="fas fa-list-ol"></i> List of products </h1>
   <div class="card animated fadeIn">
     <div class="card-body">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Brand</th>
-            <th>Category ID</th>
-          </tr>
-      </thead>
-      <tbody>
-          {{#each products.content}}
-              <tr>
-                  <td>{{this.name}}</td>
-                  <td>{{this.price}}</td>
-                  <td>{{this.brand}}</td>
-                  <td>{{this.categoryId}}</td>
-              </tr>
-           {{/each}}
-      </tbody>
-      </table>
+      <div class="table-responsive-sm">
+        <table class="table table-bordered table-striped" id="productsTable">
+          <thead class="thead-dark">
+            <tr>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Brand</th>
+              <th>Category ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products.content}}
+                <tr>
+                    <td>{{this.name}}</td>
+                    <td>{{this.price}}</td>
+                    <td>{{this.brand}}</td>
+                    <td>{{this.categoryId}}</td>
+                </tr>
+             {{/each}}
+        </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
 {{> pagination }}
 
 {{> footer }}
+
+<script>
+  let _products =  {{ json products }};
+</script>
