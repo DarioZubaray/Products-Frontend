@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const Request = require("request");
+
 const app = express();
 
 const port = process.env.PORT || 3000;
@@ -20,7 +21,7 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
-  Request.get(backendUrl.host + backendUrl.findAll, (error, response, body) => {
+  Request.get(backendUrl.heroku + backendUrl.findAll, (error, response, body) => {
     if(error) {
         console.log(error);
         res.render('error', { 'error': error });
