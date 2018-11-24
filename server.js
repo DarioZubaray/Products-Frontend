@@ -1,6 +1,6 @@
 const express = require('express');
 const hbs = require('hbs');
-required('./hbs/helpers')
+require('./hbs/helpers');
 const Request = require("request");
 
 const app = express();
@@ -14,8 +14,8 @@ const backendUrl = {
 };
 
 app.use( express.static( __dirname + '/public'));
-
 app.set('view engine', 'hbs');
+hbs.registerPartials(__dirname + '/views/partials');
 
 app.get('/', (req, res) => {
   Request.get(backendUrl.heroku + backendUrl.findAll, (error, response, body) => {
