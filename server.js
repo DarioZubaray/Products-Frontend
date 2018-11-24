@@ -1,10 +1,11 @@
 const express = require('express');
 const hbs = require('hbs');
+required('./hbs/helpers')
 const Request = require("request");
 
 const app = express();
 
-const port = process.env.PORT || 3002;
+const port = process.env.PORT || 3000;
 const backendUrl = {
   'host': 'http://localhost:8080',
   'heroku': 'https://dariozubaray-products-backend.herokuapp.com',
@@ -13,10 +14,6 @@ const backendUrl = {
 };
 
 app.use( express.static( __dirname + '/public'));
-hbs.registerHelper('getFullYear', () => {
-  return new Date().getFullYear();
-});
-hbs.registerPartials(__dirname + '/views/partials');
 
 app.set('view engine', 'hbs');
 
